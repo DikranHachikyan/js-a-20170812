@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //1. декларация на клас
+        function User(fname,lname){
+            //1. данни на класа
+            //public
+            var firstName = upper(fname);
+            var lastName = upper(lname);
+            //private
+            var age=25;
+            
+            //2. Методи на класа
+            console.log(`Constructor User`);
+            //public method
+            this.show = function(){
+              console.log(`User:${firstName} ${lastName}`);  
+            }
+            //private method
+            function upper(text){
+                return text.toUpperCase();
+            }
+        }
+        //2. създаване на обект
+        var user = new User('John', 'Doe');//конструктор
+        var user2 = new User('Anna', 'Smith');
+        user.show();
+        user2.show();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

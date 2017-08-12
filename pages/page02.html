@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //1. декларация на клас
+        function User(){
+            //данни на класа
+            //public
+            this.firstName = '';
+            this.lastName = '';
+            //private
+            var age=25;
+            //Методи на класа
+            console.log(`Constructor User`);
+            //public method
+            this.show = function(){
+              console.log(`User:${this.firstName} ${this.lastName}`);  
+            }
+
+        }
+        //2. създаване на обект
+        var user = new User();//конструктор
+        var user2 = new User();
+        user.firstName = 'John';
+        user.lastName = 'Doe';
+        user.show();
+
+        user2.firstName = 'Anna';
+        user2.lastName = 'Smith';
+        user2.show();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

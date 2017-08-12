@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var x = 10; //10 литерал
+        //1. декларация на клас
+        
+        //2. създаване на обект
+        var UserJohn = {
+          firstName:'John',
+          lastName:'Doe',
+          show: function(){
+            console.log(`User:${this.firstName} ${this.lastName}`);
+          }  
+        };
+
+        var UserAnna = {
+          firstName:'Anna',
+          lastName:'Smith',
+          show: function(){
+            console.log(`User:${this.firstName} ${this.lastName}`);
+          }  
+        };
+        //UserJohn.lastName = 'Long';
+        UserJohn.show();
+        UserAnna.show();
+        //console.log(UserJohn);
+        //console.log(UserJohn.toString());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //1. декларация на клас
+        function User(){
+            //данни на класа
+            //public
+            this.firstName = '';
+            this.lastName = '';
+            //private
+            var age=25;
+        }
+        //2. създаване на обект
+        var user = new User();
+        var user2 = new User();
+        user.firstName = 'John';
+        user.lastName = 'Doe';
+        user.age = 30;//динамично добавено свойство (само за user)
+        console.log(`User:${user.firstName} ${user.lastName} ${user.age}`);
+
+        
+        user2.firstName = 'Anna';
+        user2.lastName = 'Smith';
+        console.log(`User:${user2.firstName} ${user2.lastName} ${user2.age}`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

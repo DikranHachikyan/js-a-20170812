@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //(function(message){//$
+        //    "use strict"
+        //    console.log(message);
+        //})('Hello Javascript');//window.jQuery
+        //1. декларация на клас
+        var User = (function(){
+            //private data
+            var firstName;
+            var lastName;
+            //private methods
+            function show(){
+                console.log(`User:${firstName} ${lastName}`);
+            }
+            function register(fname,lname){
+                firstName = fname;
+                lastName = lname;
+            }
+            //public interface
+            return {
+                "print": show,
+                "register":register,
+                "age":30,
+                "isRegistred": function(){
+                    return firstName !== undefined && lasntName !== undefined;
+                }
+            };
+        })(); 
+        //2. създаване на обект
+        if( !User.isRegistred()){
+            User.register('John','Doe');
+            User.print();    
+        }
+        //var anna = User;
+        //anna.print();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
