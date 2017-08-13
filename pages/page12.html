@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    function User(fname,lname){
+        this.firstName = fname;
+        this.lastName = lname;
+        this.friends = [];
+
+        this.addFriend = function(user){
+            user.friends.push(this);
+            this.friends.push(user);
+        }
+
+        this.show = function(){
+            console.log(this.firstName + ' ' + this.lastName + ' Friends:' + this.friends.length);
+        }
+
+    }
+
+    let userAnna = new User('Anna', 'Smith');
+    let userJohn = new User('John', 'Doe');
+    let userPeter = new User('Peter', 'Weis');
+    userAnna.addFriend(userJohn);
+    userAnna.addFriend(userPeter);
+
+    userAnna.show();
+    userJohn.show();
+    userPeter.show();
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

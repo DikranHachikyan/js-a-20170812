@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //1. декларация на клас
+        function User(fname,lname,g){
+            //private data
+            var firstName = fname;
+            var lastName = lname;
+            var gender = g;
+            //private methods
+            this.getFirstName = function(){
+                return firstName;
+            }
+            this.getLastName = function(){
+                return lastName;
+            }
+            this.getGender = function(){
+                return gender;
+            }
+              
+        } 
+       User.prototype.show = function(){
+                console.log(`User:${this.getFirstName()} ${this.getLastName()} ${this.getGender()}`);
+       }
+
+       User.prototype.isLogged = function(){
+            return this.getFirstName() != undefined && this.getLastName() != undefined;
+       }
+
+       var user1 = new User('Anna','Smith','F');
+       user1.show();
+       console.log('First Name:' + user1.getFirstName());
+       
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

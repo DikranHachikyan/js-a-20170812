@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //1. декларация на клас
+        function User(fname,lname,g){
+            //private data
+            var firstName = fname;
+            var lastName = lname;
+            var gender = g;
+            //private methods
+            function print(){
+                console.log(`${firstName}`);
+            }
+            //public method
+            this.getFirstName = function(){
+                return firstName;
+            }
+            this.getLastName = function(){
+                return lastName;
+            }
+            this.getGender = function(){
+                return gender;
+            }
+              
+        } 
+       User.prototype.show = function(){
+                console.log(`User:${this.getFirstName()} ${this.getLastName()} ${this.getGender()}`);
+       }
+
+       User.prototype.isLogged = function(){
+            return this.getFirstName() != undefined && this.getLastName() != undefined;
+       }
+       //Предефиниране на метод (Function Overriding)
+       //Цел: Да се съобрази действието на метода с особеностите на класа
+       User.prototype.toString = function(){
+            return this.getFirstName() + ' ' + this.getLastName() + ' (' + this.getGender() + ')';
+       }
+
+       var user1 = new User('Anna','Smith','F');
+       user1.show();
+       console.log('First Name:' + user1.getFirstName());
+       console.log('New User:' + user1);
+       console.log(user1);
+
+       
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

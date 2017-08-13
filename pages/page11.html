@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    class User{
+        //constructor
+        constructor(firstname,lastname){
+            this.firstname = firstname;
+            this.lastname = lastname;
+        }
+        //methods
+        show(){
+            console.log(`User:${this.firstname} ${this.lastname}`);
+        }
+
+        toString(){
+           return this.firstname + ' ' + this.lastname ;
+        }
+
+    }
+
+    User.prototype.showNames = function(){
+        console.log(`${this.firstname.toUpperCase()} ${this.lastname.toUpperCase()}`);
+    }
+
+    let user = new User('Anna','Smith');
+    user.show();
+    console.log('test toString:' + user);
+    user.showNames();
+    console.log(user);
+    //let user1 = User('John','Doe'); //exception
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
