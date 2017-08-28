@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+   
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+
+        function foo(value){
+            return value * value;
+        }
+
+        const streamA = Rx.Observable
+                            .interval(500)
+                            .take(10);
+
+        streamA
+            .filter((value)=>{
+                return value % 2 !== 0;
+            })
+            .do((value)=>{
+                console.log('Before Map:' + value);
+            })
+            .map(foo)
+            .do((value)=>{
+                console.log('After Map:' + value);
+            })
+            .reduce((acc,value)=>{
+                //console.log('Reduce:' + acc + ' value:' + value); 
+                return acc + value;
+            })
+            .subscribe((value)=>{
+                console.log(value);
+            });
+                            
+        // streamA = streamB;                   
+      
+    </script>
+</body>
+</html> 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #draggable{
+        color:white;
+        line-height: 70px;
+        text-align: center;
+        background-color: blue;
+        height: 80px;
+        width: 80px;
+        position: absolute;
+        cursor: move;
+      }
+    </style>
+</head>
+<body>
+    <div id="draggable">Drag Me!</div>
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+        const first = Rx.Observable
+                        .interval(500)
+                        .take(10);
+        const second = Rx.Observable
+                            .interval(500);
+
+        const third = Rx.Observable
+                            .interval(500)
+                            .skip(2)
+                            .do((value)=>{
+                                console.log('Third Stream:' + value);
+                            })
+                            .take(1);
+
+        const output = first.flatMap( (value)=>{
+            console.log('FlatMap:' + value);
+            return second
+                    .map((value)=>{
+                        return value * 2;
+                    })
+                    .takeUntil(third);
+        });
+
+        output
+            .subscribe( (value)=>{
+                console.log('Output:' + value);
+            })
+    </script>
+</body>
+</html> 

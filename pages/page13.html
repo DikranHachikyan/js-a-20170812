@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    var values = [ 1, 2 ,9 ,10 ,3 ,8 ,5 ,7];
+
+    function filter(array){
+        var t = [];
+        for(var i=0; i < array.length; i++){
+            if( (array[i] % 2) == 0){
+                t.push(array[i]);
+            }
+        }
+        return t;
+    }
+
+    console.log('Values:' + filter(values));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

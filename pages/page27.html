@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+   
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+    //immutable
+    //String s = "Hello";
+    // s = "JavaScript"
+        const mainStream = Rx.Observable
+                            .interval(500)
+                            .take(10);
+
+        const firstStream = mainStream
+                                .map((value)=>{
+                                    return value * 10;
+                                })
+                                .subscribe((value)=>{
+                                    console.log('First Stream:' + value);
+                                });
+
+        const secondStream = mainStream
+                                .filter( (value)=>{
+                                    return value % 3 === 0;
+                                })
+                                .subscribe((value)=>{
+                                    console.log('Second Stream:' + value);
+                                })                    
+       //$('#btn').css('border','1px solid red').val('Ok');
+    </script>
+</body>
+</html> 

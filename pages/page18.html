@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+   
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+        const stream = Rx.Observable.of(1,2,3,4,5);
+
+        stream
+            .filter((v)=>{
+                return (v % 2) !== 0;
+            })
+            .map((v)=>{
+                console.log(v);
+                return v * 10;
+            })
+            .subscribe((v)=>{
+                console.log('value:' + v);
+            })
+    </script>
+</body>
+</html> 

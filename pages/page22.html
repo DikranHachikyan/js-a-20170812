@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+   
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+        const streamA = Rx.Observable.interval(500).take(6);
+        const streamB = Rx.Observable.of(1,2,3,4,5);
+
+        const output = streamA.concat(streamB);
+
+        output
+            .subscribe((value)=>{
+                console.log(value);
+            });
+        
+    </script>
+</body>
+</html> 
