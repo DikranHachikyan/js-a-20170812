@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <div id="clock">
+            <span id="minutes">00</span>:
+            <span id="seconds">00</span>:
+            <span id="milliseconds">00</span>
+            <span></span>
+            <span></span>
+        </div>
+        <button id="reset">Reset</button>
+    </div>
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
+    <script>
+        const startButton = document.querySelector('#start');
+        const stopButton = document.querySelector('#stop');
+        const resetButton = document.querySelector('#reset');
+
+        const minutes = document.querySelector('#minutes');
+        const seconds = document.querySelector('#seconds');
+        const milliseconds = document.querySelector('#milliseconds');
+
+        const start = Rx.Observable.fromEvent(startButton, 'click');
+        const stop = Rx.Observable.fromEvent(stopButton, 'click');
+        const reset = Rx.Observable.fromEvent(resetButton, 'click');
+
+        const toTime = (time)=>{
+            return {
+                minutes: Math.floor( time/6000 ),
+                seconds: Math.floor( (time/100) % 60 ),
+                milliseconds: Math.floor( time % 100)
+            };
+        };
+
+        const pad = (number)=> (number < 9) ? '0' + number:number;
+
+        const render = (time)=>{
+            minutes.innerHTML  = pad(time.minutes);
+            seconds.innerHTML  = pad(time.seconds);
+            milliseconds.innerHTML = pad(time.milliseconds);
+        };
+
+
+        const intervalG = Rx.Observable
+                                .interval(10);
+
+        const stopOrReset = Rx.Observable
+                                .merge(stop,reset);
+        const pause = intervalG
+                            .takeUntil(stopOrReset);
+
+        const init  = 0;
+        const inc = acc => acc + 1;
+
+        const incOrReset = Rx.Observable
+                                .merge(
+                                    pause.mapTo(inc ),        //натрупва сумата
+                                    reset.mapTo((acc)=>init) //нулира брояча  
+                                );
+        const app = start
+                        .switchMapTo(incOrReset) //когато събитието се случи превкл. към incOrReset
+                        .startWith(init)         //начална стойност
+                        .scan( (acc,currFunc)=>currFunc(acc)) //натрупва сумата
+                        .map(toTime)                          //преобразува в мин,сек,милисек
+                        .subscribe( v=>{
+                            render(v);
+                        })
+        
+
+
+    </script>
+</body>
+</html> 

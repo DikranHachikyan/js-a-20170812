@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Singleton</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <script>
+       //Singleton - IIFE
+
+       let Singleton = (function(){
+            let instance;
+
+            function init(){
+                //private vars and methods
+                let privateVar = 'private var';
+                let randomNumber = Math.random();
+
+                function privateMethod(){
+                    console.log('Private Method');
+                }
+                //public interface
+                return {
+                      publicMethod: function(){
+                        console.log('Public Method');
+                      }
+                    , publicVar: 'public var'
+                    , getRandomNumber: function(){
+                        return randomNumber;
+                    }
+                }; //public interface
+            }//init()
+            //================================
+            return {
+                getInstance: function(){
+                    if(!instance){
+                       instance = init(); 
+                    }
+                    return instance;
+                }
+            }; //return from IIFE
+       })();
+
+       //Test
+       let singleA = Singleton.getInstance();
+       let singleB = Singleton.getInstance();
+
+       console.log('A:' + singleA.getRandomNumber() + ' B:' + singleB.getRandomNumber());
+
+       let obj = new Singleton();
+    </script>
+</body>
+</html> 

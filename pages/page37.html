@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Singleton</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <script>
+       //Singleton - static emulation
+       let SingletonTester = (function(){
+
+          function Singleton(options){
+            options = options || {};
+
+            this.title = "My Application";
+            this.encoding = options.encoding  || 'utf-8';
+            this.language = options.language  || 'bg';
+            this.images   = options.images    || '/img/';
+          } // Singleton
+
+          let instance;
+
+          let _static = {
+            getInstance: function(options){
+              if( instance === undefined ){
+                instance = new Singleton(options);
+              }
+                return instance;
+            }
+          };//_static
+
+          return _static;
+       })();//SingletonTester
+
+       //Test
+       let singleA = SingletonTester.getInstance({
+                                                  encoding:'windows-1251'
+                                                , images:'../images'
+                                              });
+       let singleB = SingletonTester.getInstance({
+                                                  encoding:'utf-16'
+                                                , images:'../pictures'
+                                              });
+       console.log( 'A:' + singleA.encoding + ' B:' + singleB.encoding);
+       singleA.encoding = 'cp1251';
+       console.log( 'A:' + singleA.encoding + ' B:' + singleB.encoding);
+    </script>
+</body>
+</html> 

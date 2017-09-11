@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <script>
+     //Module Shopping Cart (IIFE)
+
+     let ShoppingCartModule = (function(){
+        //private
+        let items = [];
+
+        function validateItem(item){
+          if( item.name !== undefined && item.price !== undefined){
+            return true;
+          }
+          return false;
+        }
+
+
+        //Public API
+        return {
+          addItem: function(item){
+              if( validateItem(item)){
+                items.push(item);
+              }
+          },
+          itemsCount:function(){
+            return items.length;
+          },
+          getTotal: function(){
+            let total = 0 
+            for( let i=0 ; i < this.itemsCount() ; i++){
+              if( !validateItem(items[i])) throw new Error('Invalid Item:' + items[i]);
+              total += items[i].price;
+            }
+            return total;
+          }
+        };//End Public API    
+     })();//ShoppingCartModule
+
+     //Test:
+     ShoppingCartModule.addItem({
+      name: 'JavaScipt Programming',
+      price: 30.00
+     });
+     ShoppingCartModule.addItem({
+      name: 'JavaScipt Design Patterns',
+      price: 10.00
+     });
+     ShoppingCartModule.addItem({
+      name: 'JavaScipt Frameworks',
+      price: 20.00
+     });
+
+     console.log('Items:' + ShoppingCartModule.itemsCount() );
+     console.log('Total:' + ShoppingCartModule.getTotal() + ' Eur');
+
+    </script>
+</body>
+</html> 

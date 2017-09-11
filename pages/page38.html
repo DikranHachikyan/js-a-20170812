@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <script>
+     //Module Template (IIFE)
+
+     let NamespaceTest = (function(){
+          let privateVar,
+              privateMethod;
+
+          privateVar = 100;
+
+          privateMethod = function(text){
+            console.log( 'var:' + privateVar + ' text:' + text );
+          };
+
+          //Public API
+          return {
+            publicVar: "Hello",
+            publicMethod: function(msg){
+              privateVar++;
+              privateMethod(msg);
+            }
+          }; //end public API
+     })();
+
+     NamespaceTest.publicMethod('Hello JavaScript');
+    </script>
+</body>
+</html> 
